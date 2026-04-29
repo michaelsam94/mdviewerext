@@ -1,0 +1,93 @@
+{
+  "name": "mdviewerext",
+  "displayName": "MdViewer",
+  "description": "Preview Markdown files quickly from VS Code",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publisher": "michaelsam94",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelsam94/mdviewerext.git"
+  },
+  "homepage": "https://github.com/michaelsam94/mdviewerext",
+  "bugs": {
+    "url": "https://github.com/michaelsam94/mdviewerext/issues"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "mdviewerext.openMarkdownFile",
+        "title": "Markdown Viewer: Open File"
+      },
+      {
+        "command": "mdviewerext.zoomIn",
+        "title": "Markdown Viewer: Zoom In"
+      },
+      {
+        "command": "mdviewerext.zoomOut",
+        "title": "Markdown Viewer: Zoom Out"
+      },
+      {
+        "command": "mdviewerext.resetZoom",
+        "title": "Markdown Viewer: Reset Zoom"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mdviewerext.openMarkdownFile",
+          "when": "resourceExtname == .md",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Markdown Viewer",
+      "properties": {
+        "mdviewerext.openToSide": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open Markdown preview in a side editor group."
+        },
+        "mdviewerext.preserveFocus": {
+          "type": "boolean",
+          "default": false,
+          "description": "Preserve focus in the current editor when opening preview."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile && npm run lint",
+    "test": "@vscode/test-electron"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^20.14.2",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.5.0",
+    "typescript": "^5.5.2"
+  }
+}
